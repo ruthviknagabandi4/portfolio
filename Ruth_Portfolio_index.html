@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ruthvik Nagabandi | AI/ML & Operations Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --bg:         #f8f5f0;
+      --bg2:        #f0ebe3;
+      --surface:    #ffffff;
+      --border:     #ddd5c8;
+      --green:      #1a5c38;
+      --green-lt:   #2d7a50;
+      --amber:      #d97706;
+      --amber-lt:   #f59e0b;
+      --text:       #1c1c1c;
+      --muted:      #6b6560;
+      --light:      #9c9490;
+      --serif:      'Playfair Display', Georgia, serif;
+      --sans:       'Source Sans Pro', sans-serif;
+      --mono:       'Source Code Pro', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(248,245,240,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--green);
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0 48px; height: 64px;
+    }
+    .nav-brand {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: -0.01em;
+    }
+    .nav-brand span {
+      font-weight: 400;
+      font-style: italic;
+      color: var(--amber);
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 48px 80px;
+      max-width: 960px; margin: 0 auto;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--amber);
+      background: rgba(217,119,6,0.1);
+      border: 1px solid rgba(217,119,6,0.3);
+      padding: 4px 12px;
+      border-radius: 2px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(42px, 6vw, 76px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--green);
+    }
+    .hero-role {
+      font-family: var(--sans);
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--muted);
+      margin-bottom: 32px;
+      letter-spacing: 0.02em;
+    }
+    .hero-role strong { color: var(--amber); font-weight: 600; }
+
+    /* Journey bar */
+    .journey {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .journey-step {
+      display: flex;
+      flex-direction: column;
+      padding: 14px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-right: none;
+    }
+    .journey-step:first-child { border-radius: 4px 0 0 4px; }
+    .journey-step:last-child {
+      border-right: 1px solid var(--green);
+      border-color: var(--green);
+      background: rgba(26,92,56,0.06);
+      border-radius: 0 4px 4px 0;
+    }
+    .journey-arrow {
+      font-size: 18px;
+      color: var(--amber);
+      padding: 0 4px;
+      line-height: 1;
+      align-self: center;
+    }
+    .journey-year {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--light);
+      letter-spacing: 0.1em;
+      margin-bottom: 2px;
+    }
+    .journey-label {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .journey-step:last-child .journey-label { color: var(--green); }
+
+    .hero-bio {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.85;
+      margin-bottom: 40px;
+      border-left: 3px solid var(--amber);
+      padding-left: 20px;
+    }
+
+    .hero-stats {
+      display: flex; gap: 40px; flex-wrap: wrap;
+    }
+    .stat {
+      display: flex; flex-direction: column;
+    }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    /* ── SECTION ── */
+    .section-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .section-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 36px;
+      line-height: 1.2;
+    }
+
+    /* ── VALUE PROP ── */
+    .vp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    @media(max-width:680px){ .vp-grid { grid-template-columns: 1fr; } }
+    .vp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--green);
+      padding: 28px;
+      border-radius: 2px;
+    }
+    .vp-card.full { grid-column: 1 / -1; border-top-color: var(--amber); }
+    .vp-card h3 {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 14px;
+    }
+    .vp-card.full h3 { color: var(--amber); }
+    .vp-card p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 2px;
+    }
+    .skill-group h4 {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      background: rgba(26,92,56,0.07);
+      border: 1px solid rgba(26,92,56,0.2);
+      border-radius: 2px;
+      color: var(--green);
+    }
+    .skill-tag.new {
+      background: rgba(217,119,6,0.08);
+      border-color: rgba(217,119,6,0.25);
+      color: var(--amber);
+    }
+
+    /* ── ARTIFACT ── */
+    .artifact {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--green);
+      border-radius: 2px;
+      padding: 36px;
+      margin-bottom: 28px;
+      transition: box-shadow 0.2s;
+    }
+    .artifact:hover {
+      box-shadow: 0 4px 20px rgba(26,92,56,0.08);
+    }
+    .artifact-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+    .artifact-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--light);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .artifact-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 2px;
+      background: rgba(217,119,6,0.1);
+      border: 1px solid rgba(217,119,6,0.3);
+      color: var(--amber);
+      letter-spacing: 0.06em;
+    }
+    .artifact h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .artifact-intro {
+      font-size: 14px;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+    .artifact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    @media(max-width:600px){ .artifact-grid { grid-template-columns: 1fr; } }
+    .meta-block {}
+    .meta-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--light);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+    .meta-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .artifact-rule {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 20px 0;
+    }
+    .tools-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    .tool-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 3px 10px;
+      background: rgba(26,92,56,0.07);
+      border: 1px solid rgba(26,92,56,0.2);
+      border-radius: 2px;
+      color: var(--green);
+    }
+    .vp-highlight {
+      background: rgba(26,92,56,0.05);
+      border: 1px solid rgba(26,92,56,0.2);
+      border-left: 3px solid var(--green);
+      border-radius: 2px;
+      padding: 18px 22px;
+    }
+    .vp-highlight .meta-label { color: var(--green); }
+    .vp-highlight .meta-text { color: #2d5a3d; }
+
+    /* ── EXPERIENCE ── */
+    .exp-item {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .exp-role {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .exp-company { color: var(--green); font-weight: 400; }
+    .exp-loc {
+      font-size: 13px;
+      color: var(--light);
+      margin-top: 2px;
+    }
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--amber);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .exp-bullets { list-style: none; margin-top: 12px; }
+    .exp-bullets li {
+      font-size: 14px;
+      color: var(--muted);
+      padding: 3px 0 3px 20px;
+      position: relative;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+    .exp-bullets li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: var(--green);
+      font-size: 12px;
+      top: 5px;
+    }
+    .achievement {
+      display: flex;
+      gap: 14px;
+      padding: 16px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      margin-top: 10px;
+    }
+    .achievement-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .achievement-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .achievement-text strong { color: var(--green); font-weight: 600; }
+
+    /* ── CERTS / EDU ── */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+      border-radius: 2px;
+    }
+    .edu-degree {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .edu-school { font-size: 13px; color: var(--green); font-weight: 600; }
+    .edu-year { font-family: var(--mono); font-size: 11px; color: var(--light); margin-top: 4px; }
+
+    /* ── CONTACT ── */
+    .contact-card {
+      background: var(--green);
+      border-radius: 4px;
+      padding: 40px;
+      color: #fff;
+    }
+    .contact-card h3 {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+    .contact-card p {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 28px;
+      max-width: 560px;
+      line-height: 1.8;
+    }
+    .contact-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .contact-link {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 3px;
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .contact-link:hover { background: rgba(255,255,255,0.22); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 2px solid var(--green);
+      padding: 28px 48px;
+      max-width: 960px; margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-text {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--light);
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--green); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">Ruthvik <span>Nagabandi</span></span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#value">Value</a></li>
+    <li><a href="#artifacts">Artifacts</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="about">
+  <span class="hero-tag">AIML-501 Professional Portfolio</span>
+  <h1>Ruthvik<br><em>Nagabandi</em></h1>
+  <p class="hero-role">Batch Operations Analyst → <strong>AI/ML Integration Leader</strong></p>
+
+  <!-- Journey Bar -->
+  <div class="journey">
+    <div class="journey-step">
+      <span class="journey-year">2020</span>
+      <span class="journey-label">Data Center Ops</span>
+    </div>
+    <span class="journey-arrow">→</span>
+    <div class="journey-step">
+      <span class="journey-year">2023</span>
+      <span class="journey-label">Batch Analyst @ Deloitte</span>
+    </div>
+    <span class="journey-arrow">→</span>
+    <div class="journey-step">
+      <span class="journey-year">2025</span>
+      <span class="journey-label">Sr. Analyst @ Cardinal Health</span>
+    </div>
+    <span class="journey-arrow">→</span>
+    <div class="journey-step">
+      <span class="journey-year">Now</span>
+      <span class="journey-label">AI/ML Graduate Student</span>
+    </div>
+  </div>
+
+  <p class="hero-bio">
+    3+ years architecting automated workflows that keep enterprise operations running
+    without interruption. Now bringing that same systems-thinking discipline to the
+    world of AI and machine learning — where the next generation of intelligent
+    automation is being built.
+  </p>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">3,500+</span>
+      <span class="stat-label">Daily OpCon Jobs</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">18</span>
+      <span class="stat-label">Months Zero Missed SLA</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">75%</span>
+      <span class="stat-label">Faster Month-End Close</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Data Accuracy Target</span>
+    </div>
+  </div>
+</div>
+
+<!-- VALUE PROPOSITION -->
+<section class="section-wrap" id="value">
+  <p class="section-eyebrow">// 01 — Who I Am</p>
+  <h2 class="section-title">Personal Value Proposition</h2>
+
+  <div class="vp-grid">
+    <div class="vp-card full">
+      <h3>My Statement</h3>
+      <p>
+        As a Batch Operations Analyst with 3+ years of experience designing and maintaining
+        mission-critical automated workflows across Linux, Windows, and cloud environments,
+        I bring a rare operational discipline to the field of AI and machine learning. I help
+        organizations bridge the gap between robust enterprise automation and intelligent AI
+        systems — ensuring that AI initiatives are not just technically sound but operationally
+        reliable, scalable, and built to survive contact with real production environments.
+      </p>
+    </div>
+    <div class="vp-card">
+      <h3>Target Audience</h3>
+      <p>
+        Technology leaders, operations managers, and organizations in healthcare,
+        financial services, and enterprise IT who need AI/ML solutions that integrate
+        seamlessly with existing batch processing, database management, and
+        automation infrastructure — not just proof-of-concept tools.
+      </p>
+    </div>
+    <div class="vp-card">
+      <h3>Unique Differentiator</h3>
+      <p>
+        Most AI/ML candidates come from data science or software engineering.
+        I come from operations — where systems must run 24/7 with zero missed
+        SLAs and zero tolerance for failure. That operational mindset, combined
+        with emerging AI/ML knowledge, is what organizations need when moving
+        AI from the lab into production.
+      </p>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <p class="section-eyebrow" style="margin-top:48px;">// Technical Stack</p>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h4>Workload Automation</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">OpCon Enterprise Manager</span>
+        <span class="skill-tag">Solution Manager</span>
+        <span class="skill-tag">Job Dependencies</span>
+        <span class="skill-tag">Schedule Simulation</span>
+        <span class="skill-tag">Self-Service Buttons</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Linux & Systems</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">RHEL</span>
+        <span class="skill-tag">Bash Scripting</span>
+        <span class="skill-tag">LSAM Management</span>
+        <span class="skill-tag">SFTP/SCP</span>
+        <span class="skill-tag">Process Monitoring</span>
+        <span class="skill-tag">IBM i (AS/400)</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Database & Scripting</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">SQL Server</span>
+        <span class="skill-tag">T-SQL / PL-SQL</span>
+        <span class="skill-tag">PowerShell</span>
+        <span class="skill-tag">Bash</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>ITSM & Monitoring</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">ServiceNow</span>
+        <span class="skill-tag">Jira</span>
+        <span class="skill-tag">Splunk</span>
+        <span class="skill-tag">SolarWinds</span>
+        <span class="skill-tag">Confluence</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>AI/ML (In Development)</h4>
+      <div class="skill-tags">
+        <span class="skill-tag new">ML Fundamentals</span>
+        <span class="skill-tag new">Prompt Engineering</span>
+        <span class="skill-tag new">AI Ethics</span>
+        <span class="skill-tag new">Chatbot Design</span>
+        <span class="skill-tag new">STORM AI</span>
+        <span class="skill-tag new">LLM Tools</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Platforms & Cloud</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Windows Server</span>
+        <span class="skill-tag">Cloud Integration</span>
+        <span class="skill-tag">SAP Connectors</span>
+        <span class="skill-tag">Disaster Recovery</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTIFACTS -->
+<section class="section-wrap" id="artifacts">
+  <p class="section-eyebrow">// 02 — Course Work</p>
+  <h2 class="section-title">Portfolio Artifacts</h2>
+  <p style="color:var(--muted); font-size:14px; margin-bottom:40px; font-family:var(--mono);">
+    AIML-501 — Model Development | Indiana Wesleyan University
+  </p>
+
+  <!-- ARTIFACT 1 -->
+  <div class="artifact">
+    <div class="artifact-top">
+      <span class="artifact-num">Artifact 01 — Workshop 1</span>
+      <span class="artifact-badge">Professional Self-Assessment</span>
+    </div>
+    <h3>Leading as a Learner — Change Management & AI/ML Self-Assessment</h3>
+    <p class="artifact-intro">
+      A structured self-assessment and critical reflection evaluating personal strengths
+      and growth areas across 17 change management competencies and 7 AI/ML leadership
+      dimensions — grounded in the CCL Change Leadership framework.
+    </p>
+    <div class="artifact-grid">
+      <div class="meta-block">
+        <p class="meta-label">Objective</p>
+        <p class="meta-text">To honestly evaluate current leadership capabilities in the context of AI/ML integration and organizational change — identifying the gaps most critical to close as I transition from a pure operations role into AI/ML leadership.</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Description</p>
+        <p class="meta-text">Completed both the Change Management Skills Self-Assessment (17 categories including Communication, Emotional Intelligence, Risk Management, and Conflict Resolution) and the AI/ML Integration Leadership Skills Self-Assessment (7 categories covering Technical Understanding through Ethical AI). Wrote a structured reflection identifying strengths, growth areas, and proposed revisions to each tool.</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Process</p>
+        <p class="meta-text">Read CCL's "How to be a Successful Change Leader" and Change Strategists' "How to Assess Change Management Skills." Completed both assessments with honest scoring. Wrote critical reflection identifying top 3 strengths and growth areas per assessment. Proposed specific revisions grounded in the readings and professional experience in batch operations and incident response.</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Unique Value</p>
+        <p class="meta-text">My operations background gave me an unusual lens for this assessment. In batch operations, self-assessment is built into every shift — you review what failed, why it failed, and what the recovery procedure should be. Applying that same root-cause analysis discipline to a personal leadership assessment produced more honest and actionable results than a typical academic exercise.</p>
+      </div>
+    </div>
+    <hr class="artifact-rule">
+    <div class="meta-block" style="margin-bottom:16px;">
+      <p class="meta-label">Tools & Technologies</p>
+      <div class="tools-row">
+        <span class="tool-tag">CCL Framework</span>
+        <span class="tool-tag">Change Strategists Model</span>
+        <span class="tool-tag">Self-Assessment</span>
+        <span class="tool-tag">Critical Reflection</span>
+        <span class="tool-tag">APA 7 Citation</span>
+      </div>
+    </div>
+    <div class="vp-highlight">
+      <p class="meta-label">Artifact Value Proposition</p>
+      <p class="meta-text">
+        In enterprise operations, the professionals who advance are not always the most
+        technically skilled — they are the ones who can accurately assess where they are,
+        identify what needs to change, and take deliberate action. This artifact demonstrates
+        that capacity. For organizations evaluating AI/ML integration leaders, the ability to
+        self-assess honestly and drive personal development is as critical as any technical
+        credential. Leaders who cannot assess themselves accurately cannot lead organizational
+        change effectively.
+      </p>
+    </div>
+    <div class="meta-block" style="margin-top:16px;">
+      <p class="meta-label">Relevance</p>
+      <p class="meta-text">As AI/ML integration becomes a core competency for operations teams, the ability to evaluate and develop leadership capability in this space is no longer optional. This assessment provides a replicable framework that other operations professionals can use to benchmark their own AI/ML readiness.</p>
+    </div>
+  </div>
+
+  <!-- ARTIFACT 2 -->
+  <div class="artifact">
+    <div class="artifact-top">
+      <span class="artifact-num">Artifact 02 — Workshop 1</span>
+      <span class="artifact-badge">AI & ML Timeline</span>
+    </div>
+    <h3>Cycles of Promise and Pause — A Reflective History of AI</h3>
+    <p class="artifact-intro">
+      An original visual timeline tracing the recurring patterns of ambition, disillusionment,
+      and renewal in AI history from 1950 to the present — designed for operations professionals
+      who need historical context to make sense of today's AI landscape.
+    </p>
+    <div class="artifact-grid">
+      <div class="meta-block">
+        <p class="meta-label">Objective</p>
+        <p class="meta-text">To demonstrate historical understanding of AI's evolution — including the two AI Winters and their causes — and to connect that history to the current AI/ML landscape that operations teams are now being asked to integrate.</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Description</p>
+        <p class="meta-text">A visual timeline covering 10 key milestones from Turing's 1950 paper through 2024 Generative AI, structured around the recurring cycle of hype, overreach, and rebuilding. Each milestone includes a brief reflective note connecting the historical lesson to current practice.</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Process</p>
+        <p class="meta-text">Researched AI history using Our World in Data, IEEE Computer Society, and the Putchuon (2024) documentary. Identified the pattern of ambition-winter-rebuilding as the organizing principle. Designed the timeline in Canva using an elegant editorial style with reflective annotations at each winter period.</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Unique Value</p>
+        <p class="meta-text">As someone who has lived through technology hype cycles in enterprise operations — where new tools are adopted, fail to deliver, and are quietly replaced — the AI Winters resonated personally. This timeline is written from that practitioner perspective, not from an academic or marketing one.</p>
+      </div>
+    </div>
+    <hr class="artifact-rule">
+    <div class="meta-block" style="margin-bottom:16px;">
+      <p class="meta-label">Tools & Technologies</p>
+      <div class="tools-row">
+        <span class="tool-tag">Canva</span>
+        <span class="tool-tag">Visual Design</span>
+        <span class="tool-tag">Historical Research</span>
+        <span class="tool-tag">APA 7 Citation</span>
+      </div>
+    </div>
+    <div class="vp-highlight">
+      <p class="meta-label">Artifact Value Proposition</p>
+      <p class="meta-text">
+        Understanding why AI failed twice before — and what conditions allowed it to succeed —
+        is essential knowledge for any operations professional being asked to integrate AI tools
+        into production systems today. This timeline gives operations teams and technology leaders
+        the historical context to evaluate AI vendor claims more critically and set more realistic
+        expectations for AI integration timelines and outcomes.
+      </p>
+    </div>
+    <div class="meta-block" style="margin-top:16px;">
+      <p class="meta-label">References</p>
+      <p class="meta-text">Bender, E., & Our World in Data. (n.d.). A brief history of artificial intelligence. https://ourworldindata.org/brief-history-of-ai | IEEE Computer Society. (n.d.). The evolution of AI. https://www.computer.org | Putchuon. (2024). The entire history of artificial intelligence [Video]. YouTube.</p>
+    </div>
+  </div>
+
+  <!-- ARTIFACT 3 -->
+  <div class="artifact">
+    <div class="artifact-top">
+      <span class="artifact-num">Artifact 03 — Workshop 1</span>
+      <span class="artifact-badge">AI Lab</span>
+    </div>
+    <h3>Ethics in AI Reflection Guide — A Socratic Chatbot</h3>
+    <p class="artifact-intro">
+      A working AI chatbot built on Chatbase.co that guides users through structured ethical
+      reflection on AI scenarios using a Socratic questioning approach — designed for students,
+      professionals, and teams grappling with AI ethics in practice.
+    </p>
+    <div class="artifact-grid">
+      <div class="meta-block">
+        <p class="meta-label">Objective</p>
+        <p class="meta-text">To gain direct hands-on experience designing, building, and iterating on a functional AI assistant, applying a Design Thinking framework to produce a purpose-built tool that serves a genuine user need.</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Description</p>
+        <p class="meta-text">The Ethics in AI Reflection Guide is a chatbot that does not give answers — it asks questions. Using a six-step Socratic framework, it guides users through identifying stakeholders, surfacing ethical frameworks, applying one framework to a scenario, encountering a complication, and forming their own reasoned conclusion.</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Process</p>
+        <p class="meta-text">Applied Design Thinking: Empathy — identified users who want to engage with AI ethics but lack a structured thinking partner. Define — the problem is that most AI ethics resources tell people what to think rather than helping them think better. Ideate — chose Socratic approach over prescriptive bot. Prototype — built on Chatbase.co with custom system prompt. Test — verified bot asked questions rather than lecturing across multiple scenario types. Iterated three times to balance depth with usability.</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Unique Value</p>
+        <p class="meta-text">A bot that prescribes ethical positions would be philosophically self-undermining. The Socratic design choice reflects a genuine understanding of how ethical reasoning develops — through questioning, not instruction. This makes it a more durable and trustworthy tool than a standard information bot.</p>
+      </div>
+    </div>
+    <hr class="artifact-rule">
+    <div class="meta-block" style="margin-bottom:16px;">
+      <p class="meta-label">Tools & Technologies</p>
+      <div class="tools-row">
+        <span class="tool-tag">Chatbase.co</span>
+        <span class="tool-tag">Google Gemini</span>
+        <span class="tool-tag">Consensus GPT</span>
+        <span class="tool-tag">STORM AI</span>
+        <span class="tool-tag">Design Thinking</span>
+        <span class="tool-tag">Prompt Engineering</span>
+      </div>
+    </div>
+    <div class="vp-highlight">
+      <p class="meta-label">Artifact Value Proposition</p>
+      <p class="meta-text">
+        As AI systems increasingly make or inform consequential decisions in healthcare,
+        finance, and operations, the ability to reason clearly about AI ethics is a professional
+        competency — not just an academic one. This chatbot provides a structured, accessible
+        tool for teams and individuals to develop that competency. For organizations deploying
+        AI, it demonstrates that I can design AI tools with genuine consideration for the humans
+        who use them, not just the systems that run them.
+      </p>
+    </div>
+    <div class="meta-block" style="margin-top:16px;">
+      <p class="meta-label">Relevance</p>
+      <p class="meta-text">In batch operations, every automated process has a human downstream. The same is true for AI systems. Building a tool that helps people think more carefully about those human consequences reflects the operational mindset I bring to AI/ML — always asking who is affected and how.</p>
+    </div>
+  </div>
+
+  <!-- ARTIFACT 4 -->
+  <div class="artifact">
+    <div class="artifact-top">
+      <span class="artifact-num">Artifact 04 — Workshop 1</span>
+      <span class="artifact-badge">Discussion</span>
+    </div>
+    <h3>Created to Learn — Reflections on Human Reasoning & Machine Intelligence</h3>
+    <p class="artifact-intro">
+      A personal reflection essay examining what it means to be created in God's image —
+      including our unique capacity to learn, reason, and create — and what that means for
+      the boundaries of machine intelligence.
+    </p>
+    <div class="artifact-grid">
+      <div class="meta-block">
+        <p class="meta-label">Objective</p>
+        <p class="meta-text">To engage critically and personally with the philosophical and theological dimensions of AI — exploring what machines can and cannot replicate about human reasoning, grounded in biblical integration and professional experience.</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Process</p>
+        <p class="meta-text">Read assigned resources on AI/ML fundamentals and Generative AI. Reflected on 3+ years of experience in batch operations — where systems execute rules precisely but cannot exercise the judgment required when rules break down. Drew on that operational experience to ground the theological reflection in concrete professional reality.</p>
+      </div>
+    </div>
+    <hr class="artifact-rule">
+    <div class="meta-block" style="margin-bottom:16px;">
+      <p class="meta-label">Tools & Technologies</p>
+      <div class="tools-row">
+        <span class="tool-tag">Academic Writing</span>
+        <span class="tool-tag">Biblical Integration</span>
+        <span class="tool-tag">Critical Reflection</span>
+        <span class="tool-tag">APA 7 Citation</span>
+      </div>
+    </div>
+    <div class="vp-highlight">
+      <p class="meta-label">Artifact Value Proposition</p>
+      <p class="meta-text">
+        After years in operations watching automated systems fail in ways their designers
+        never anticipated, I have a practitioner's answer to this question: machines can
+        execute rules with perfect consistency, but they cannot exercise the judgment that
+        emerges when rules are insufficient. That gap — between execution and judgment —
+        is where human reasoning lives, and it is directly relevant to every decision about
+        how much autonomy to grant an AI system in a production environment.
+      </p>
+    </div>
+  </div>
+
+  <!-- ARTIFACT 5 -->
+  <div class="artifact">
+    <div class="artifact-top">
+      <span class="artifact-num">Artifact 05 — Workshop 1</span>
+      <span class="artifact-badge">Portfolio Foundation</span>
+    </div>
+    <h3>Professional Bio & Value Proposition</h3>
+    <p class="artifact-intro">
+      The foundational identity layer of this portfolio — positioning the intersection of
+      enterprise batch operations expertise and emerging AI/ML leadership capability for
+      technology leaders evaluating AI integration talent.
+    </p>
+    <div class="artifact-grid">
+      <div class="meta-block">
+        <p class="meta-label">Objective</p>
+        <p class="meta-text">To clearly articulate who I am as a professional, what unique value I bring to AI/ML-focused roles, and how my operations background differentiates me from candidates entering AI/ML from purely theoretical or data science backgrounds.</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Process</p>
+        <p class="meta-text">Applied the Value Proposition framework from course materials. Identified target audience — technology leaders in healthcare and financial services. Listed unique skills. Translated operational achievements (3,500+ daily jobs, zero missed SLAs, 75% faster month-end close) into AI/ML leadership value. Built and published portfolio on GitHub Pages.</p>
+      </div>
+    </div>
+    <hr class="artifact-rule">
+    <div class="meta-block" style="margin-bottom:16px;">
+      <p class="meta-label">Tools & Technologies</p>
+      <div class="tools-row">
+        <span class="tool-tag">GitHub Pages</span>
+        <span class="tool-tag">HTML / CSS</span>
+        <span class="tool-tag">Personal Branding</span>
+        <span class="tool-tag">Value Proposition Framework</span>
+      </div>
+    </div>
+    <div class="vp-highlight">
+      <p class="meta-label">Artifact Value Proposition</p>
+      <p class="meta-text">
+        A portfolio without a clear identity is just a file cabinet. This artifact is the lens
+        through which everything else should be read — making explicit what I stand for, who
+        I serve, and what I bring that others do not. The ability to articulate one's own value
+        proposition clearly is itself a leadership competency, one that becomes increasingly
+        important as AI/ML professionals are asked to justify investment and lead organizational
+        change.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section-wrap" id="experience">
+  <p class="section-eyebrow">// 03 — Background</p>
+  <h2 class="section-title">Professional Experience</h2>
+
+  <div class="exp-item">
+    <div class="exp-top">
+      <div>
+        <p class="exp-role">Batch Operations Analyst — <span class="exp-company">Cardinal Healthcare</span></p>
+        <p class="exp-loc">Dallas, Texas</p>
+      </div>
+      <span class="exp-date">May 2025 — Feb 2026</span>
+    </div>
+    <ul class="exp-bullets">
+      <li>Design and maintain 3,500+ daily OpCon jobs creating complex multi-step workflows synchronizing data between Linux, Windows, and Cloud environments.</li>
+      <li>Manage production MySQL databases to retrieve and validate data before triggering downstream OpCon schedules, ensuring 100% data accuracy.</li>
+      <li>Develop automated SQL scripts within OpCon to update record statuses across multiple tables in real time.</li>
+      <li>Implement scheduled automated delete/purge routines in MySQL to maintain database performance and manage storage for historical log data.</li>
+      <li>Architected a standardized Linux directory structure for production environments.</li>
+    </ul>
+    <div class="achievement">
+      <span class="achievement-icon">🏆</span>
+      <p class="achievement-text"><strong>Key Achievement:</strong> Automated the end-of-month financial closing cycle in OpCon, reducing manual processing time from <strong>6 hours to 90 minutes</strong> — a 75% reduction.</p>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-top">
+      <div>
+        <p class="exp-role">Batch Operations Analyst — <span class="exp-company">Deloitte</span></p>
+        <p class="exp-loc">Lake Mary, Florida</p>
+      </div>
+      <span class="exp-date">Mar 2023 — May 2025</span>
+    </div>
+    <ul class="exp-bullets">
+      <li>Monitored real-time batch cycles using OpCon Solution Manager and Enterprise Manager thick client.</li>
+      <li>Maintained "Zero Missed SLA" record for 18 consecutive months through strategic use of OpCon Notifications.</li>
+      <li>Assisted implementation of OpCon Self-Service buttons allowing non-technical departments to trigger on-demand reports safely.</li>
+      <li>Managed lifecycle of service accounts and SSL certificates for Linux-based batch jobs, ensuring zero downtime during annual security renewal cycles.</li>
+      <li>Configured and monitored automated SFTP/SCP file transfer workflows ensuring secure delivery between Linux RHEL servers and external vendor endpoints.</li>
+      <li>Acted as primary point of contact for Application Developers during batch failures, providing detailed Linux log analysis and MySQL query results.</li>
+    </ul>
+    <div class="achievement">
+      <span class="achievement-icon">🏆</span>
+      <p class="achievement-text"><strong>Key Achievement:</strong> Maintained <strong>Zero Missed SLA</strong> for 18 consecutive months — the primary performance benchmark for enterprise batch operations.</p>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-top">
+      <div>
+        <p class="exp-role">Junior Data Center Operator — <span class="exp-company">TRG Consulting Ltd</span></p>
+        <p class="exp-loc">Hyderabad, India</p>
+      </div>
+      <span class="exp-date">Jun 2020 — Jul 2021</span>
+    </div>
+    <ul class="exp-bullets">
+      <li>Provided 24/7 monitoring of data center operations ensuring all server hardware and environmental systems remained within operational parameters.</li>
+      <li>Managed physical and virtual tape backups ensuring successful off-site rotations for disaster recovery compliance.</li>
+      <li>Utilized ServiceNow to document all shift activities, hardware swaps, and system alerts.</li>
+    </ul>
+  </div>
+
+  <!-- EDUCATION -->
+  <p class="section-eyebrow" style="margin-top:48px; margin-bottom:20px;">// Education</p>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <p class="edu-degree">MS in AI & Machine Learning</p>
+      <p class="edu-school">Indiana Wesleyan University</p>
+      <p class="edu-year">2025 — Present</p>
+    </div>
+    <div class="edu-card">
+      <p class="edu-degree">Master's in Information Systems</p>
+      <p class="edu-school">Trine University</p>
+      <p class="edu-year">Apr 2022 — May 2023</p>
+    </div>
+    <div class="edu-card">
+      <p class="edu-degree">MTECH Integrated Software Engineering</p>
+      <p class="edu-school">VIT University</p>
+      <p class="edu-year">Apr 2015 — Apr 2020</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section-wrap" id="contact">
+  <p class="section-eyebrow">// 04 — Get In Touch</p>
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-card">
+    <h3>Let's Connect</h3>
+    <p>
+      I am currently pursuing my MS in AI/ML at Indiana Wesleyan University while
+      working as a Batch Operations Analyst at Cardinal Healthcare. Open to conversations
+      about AI/ML integration into enterprise operations, intelligent automation,
+      and the future of batch processing in AI-driven environments.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:ruthvik1901@gmail.com" class="contact-link">📧 ruthvik1901@gmail.com</a>
+      <a href="https://github.com/ruthviknagabandi4/portfolio" class="contact-link">⚙ GitHub Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-text">© 2025 Ruthvik Nagabandi — AIML-501 Portfolio | Indiana Wesleyan University</p>
+  <div class="footer-links">
+    <a href="#about">Top</a>
+    <a href="#artifacts">Artifacts</a>
+    <a href="mailto:ruthvik1901@gmail.com">Email</a>
+  </div>
+</footer>
+
+</body>
+</html>
